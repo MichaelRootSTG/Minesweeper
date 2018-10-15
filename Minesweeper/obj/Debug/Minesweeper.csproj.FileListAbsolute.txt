@@ -38,3 +38,43 @@ c:\users\michael\documents\visual studio 2015\Projects\Minesweeper\Minesweeper\b
 c:\users\michael\documents\visual studio 2015\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csprojResolveAssemblyReference.cache
 c:\users\michael\documents\visual studio 2015\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.dll
 c:\users\michael\documents\visual studio 2015\Projects\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\csc.exe
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\vbc.exe
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\VBCSCompiler.exe
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Minesweeper.dll.config
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Minesweeper.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Minesweeper.pdb
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Antlr3.Runtime.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Newtonsoft.Json.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.Helpers.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.Mvc.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.Optimization.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.Razor.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.WebPages.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.WebPages.Razor.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\WebGrease.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.Helpers.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.Mvc.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.Optimization.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.Razor.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.WebPages.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\System.Web.WebPages.Razor.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Antlr3.Runtime.pdb
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Newtonsoft.Json.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csprojResolveAssemblyReference.cache
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
