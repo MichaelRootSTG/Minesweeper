@@ -1,0 +1,124 @@
+﻿body{
+    font-family: Arial;
+}
+
+div#HeaderContainer{
+    width: 1260px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+div#RemainingDiv{
+    float: left;
+    font-size: 40px;
+    width: 29px;
+    text-align: left;
+}
+
+div#TimeDiv{
+    float: right;
+    font-size: 40px;
+}
+
+#Remaining{
+    display: inline-block;
+}
+
+#Time{
+    display: inline-block;
+}
+
+#Start{
+    width: 200px;
+    height: 30px;
+    position: relative;
+    top: 10px;
+}
+
+div#Container{
+    width: 1260px;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 700px;
+    border: outset lightgray 10px;
+}
+
+div.row {
+    width: 1240px;
+    height: 40px;
+    margin: 0 0 0 0;
+}
+
+div.box{
+    height: 40px;
+    width: 40px;
+    background-color: lightgray;
+    border: outset white 4px;
+    display: inline-block;
+    opacity: 0;
+}
+
+div.box:not(.answered-box, .flagged){
+    cursor: pointer;
+}
+
+div.box:hover:not(.flagged){
+    border: inset white 4px;
+}
+
+div.answered-box{
+    top: -16px;
+    position: relative;
+    padding-top: 7px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 18px;
+    border: none !important;
+    font-weight: bold;
+    background-color: lightgray !important;
+}  
+
+div.touchingOne{
+    color: blue;
+}
+
+div.touchingTwo{
+    color: green
+}
+
+div.touchingThree{
+    color: red;
+}
+div.touchingFour{
+    color: purple;
+}
+
+div.touchingFive{
+    color: orange;
+}
+
+div.touchingSix{
+    color: pink;
+}
+
+div.touchingSeven{
+    color: brown;
+}
+
+div.touchingEight{
+    color: black;
+}
+
+.flagged {
+    background-image: url("flag.png");
+    background-size: 31px;
+    background-position-x: 1px;
+}
+
+.boom{
+    background-image: url(mine.png);
+    background-position-x: 0px;
+    background-position-y: 1px;
+    background-size: 41px;
+    border: none !important;
+}
