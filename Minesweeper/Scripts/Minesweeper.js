@@ -6,13 +6,11 @@
     intervalID,
     boom = false;
 
-document.oncontextmenu = function () {
-    return false;
-}
+document.getElementById("Container").oncontextmenu = function () { return false; }
 
 function StartTimer() {
     gameActive = true;
-    var intervalID = setInterval(function () {
+    intervalID = setInterval(function () {
         var currentTime = parseInt($("span#Time").html());
         currentTime++;
         if (currentTime < 1000 && $(".boom").length <= 0 ) {
@@ -49,6 +47,25 @@ function Boom() {
     $(".box").addClass("done");
 }
 
+function CheckLastRow() {
+    if ($(".answered-box[data-row='16']").length == 31) {
+        $(".answered-box[data-row='16']").css("top", "0px");
+    }
+}
+
+function CheckGameComplete() {
+    var answered = $(".answered-box").length;
+    var answeredInt = parseInt(answered);
+    var flagged = $(".flagged").length;
+    var flaggedInt = parseInt(flagged);
+
+    if (answeredInt + flaggedInt == 480) {
+        CancelTimer();
+        gameStatus = false;
+        gameActive = false;
+    }
+}
+
 function CheckMine() {
     if (!boom) {
         if (!gameActive)
@@ -76,6 +93,8 @@ function CheckMine() {
                     }
 
                     $("#Box_Row" + test.YPos + "_Column" + test.XPos).addClass("answered-box");
+                    CheckLastRow();
+                    CheckGameComplete();
 
                     switch (test.Value) {
                         case 1:
@@ -120,7 +139,15 @@ function allowNextGame() {
 $("#Start").on("click", function () {
     if (!gameStatus) {
         gameStatus = true;
+        gameActive = false;
+        boom = false;
         $("#Start").attr("disabled", "true");
+        CancelTimer();
+        remainingMines = 99;
+        $("#Remaining").html("" + remainingMines);
+        $("span#Time").html("000");
+        $("#Container").empty();
+        FillContainer();
         $.getJSON("Home/NewGame", function (data) {
             var ci = 0,
             ri = 0;
@@ -130,13 +157,13 @@ $("#Start").on("click", function () {
                 }
                 ci = 0;
             }
-            window.setTimeout(allowNextGame, 6000);
+            window.setTimeout(allowNextGame, 4000);
         });
     }
 });
 
 function rightClick() {
-    if (!$(event.target).hasClass("clicked") && !boom) {
+    if (!$(event.target).hasClass("clicked") && !$(event.target).hasClass("answered-box") && !boom) {
         if ($(event.target).hasClass("flagged")) {
             remainingMines++;
             $(event.target).removeClass("flagged");
@@ -150,17 +177,18 @@ function rightClick() {
     }
 }
 
-$(document).ready(function () {
-
-    var contents = document.createElement("div");
-        ci = 0,
+function FillContainer(){
+    var ci = 0,
         ri = 0;
 
-    for (; ri <= rows; ri++) {
+    for (; ri < rows; ri++) {
         var row = document.createElement("div");
         row.id = "Row" + ri;
         row.className = "row";
-        for (; ci <= columns; ci++) {
+        if (rows == ri) {
+            row.className += " last-row";
+        }
+        for (; ci < columns; ci++) {
             var box = document.createElement("div",
                 {
                     "data-row": ri,
@@ -175,8 +203,6 @@ $(document).ready(function () {
             row.appendChild(box);
         }
         ci = 0;
-        contents.appendChild(row);
+        $("#Container").append(row);
     }
-
-    $("#Container").append(contents);
-});
+}
