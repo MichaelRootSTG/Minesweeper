@@ -20,7 +20,7 @@ namespace Minesweeper.Controllers
             TempData.Remove("Game");
 
             Random random = new Random();
-            int expertMines = 99;
+            int expertMines = 20;
             int i = 0;
             var allMines = new List<Mine>();
             for (; i < expertMines; i++)
@@ -45,7 +45,7 @@ namespace Minesweeper.Controllers
             }
 
             TempData.Add("Game", allMines);
-            return Json("Success", JsonRequestBehavior.AllowGet);
+            return Json(expertMines, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Find()

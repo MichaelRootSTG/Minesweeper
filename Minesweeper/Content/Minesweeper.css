@@ -45,6 +45,7 @@ div#Container{
     margin-top: 20px;
     height: 660px;
     border: outset lightgray 10px;
+    position: relative;
 }
 
 div.row {
@@ -67,8 +68,6 @@ div.box:not(.answered-box, .flagged){
 }
 
 div.answered-box{
-    position: relative;
-    top: -16px;
     padding-top: 7px;
     vertical-align: middle;
     text-align: center;
@@ -122,6 +121,12 @@ div.touchingEight{
     background-position-x: 1px;
 }
 
+.bad-flag{
+    background-image: url("bad-flag.png");
+    background-size: 31px;
+    background-position-x: 1px;
+}
+
 .boom{
     background-image: url(mine.png);
     background-position-x: 0px;
@@ -131,10 +136,7 @@ div.touchingEight{
 }
 
 #HighScores{
-    width: 300px;
-    margin: 0 auto;
-    position: relative;
-    left: -20px;
+    float: left;
 }
 
 h2{
@@ -152,4 +154,47 @@ h2{
 
 #RightSideHighScores{
     float: right;
+}
+
+#FooterContainer{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#YourStats{
+    float: left;
+    margin-left: 100px;
+}
+
+#ResetStats{
+    margin-top: 10px;
+}
+
+#YourStatsTable{
+    width: 180px;
+}
+
+#ResetButtonCell{
+    text-align: center;
+}
+
+#GameResult{
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    padding-top: 220px;
+    font-size: 100px;
+    font-family: verdana;
+    text-shadow: 0 0 15px blue;
+    display: none;
+    color: white;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }

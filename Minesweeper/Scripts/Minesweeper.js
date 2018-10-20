@@ -1,10 +1,14 @@
 ﻿var columns = 30,
     rows = 16,
     gameStatus = false,
-    remainingMines = 99,
+    remainingMines,
     gameActive = false,
     intervalID,
-    boom = false;
+    boom = false,
+    totalMines;
+
+var regex1 = /\/\d+/g; // digits after the /
+var regex2 = /\d+\//g; // digits before the /
 
 document.getElementById("Container").oncontextmenu = function () { return false; }
 
@@ -13,7 +17,7 @@ function StartTimer() {
     intervalID = setInterval(function () {
         var currentTime = parseInt($("span#Time").html());
         currentTime++;
-        if (currentTime < 1000 && $(".boom").length <= 0 ) {
+        if (currentTime < 1000 && $(".boom").length <= 0) {
             if (("" + currentTime).length == 1) {
                 var currentTime = "00" + currentTime;
             }
@@ -36,15 +40,77 @@ function Boom() {
     gameActive = false;
     boom = true;
     CancelTimer();
+    var allHiddenPositions = [];
     $.getJSON("Home/ShowAllMines", function (data) {
         var len = data.length,
                 i = 0;
         for (; i < len; i++) {
             var test = data[i];
-            $("#Box_Row" + test.YPos + "_Column" + test.XPos).addClass("boom");
+            // If it doesn't have a flag, then show the position of the hidden mine
+            if (!$("#Box_Row" + test.YPos + "_Column" + test.XPos).hasClass("flagged")) {
+                $("#Box_Row" + test.YPos + "_Column" + test.XPos).addClass("boom");
+            }
+            allHiddenPositions.push([test.YPos, test.XPos]);
         }
+    })
+    .always(function (allHiddenPositions) {
+        var flagged = $(".flagged");
+        var len = flagged.length,
+            i = 0,
+            len2 = allHiddenPositions.length;
+            
+        for (; i < len; i++) {
+            var row = flagged[i].getAttribute("data-row");
+            var column = flagged[i].getAttribute("data-column");
+            var validFlag = false;
+            var i2 = 0;
+            for (; i2 < len2; i2++) {
+                // Loop through the mines and see if all our flags match up with one
+                // If we don't find any mine for the flag then it's invalid
+                if (row == allHiddenPositions[i2].YPos && column == allHiddenPositions[i2].XPos) {
+                    validFlag = true;
+                    break;
+                }
+            }
+            if (!validFlag) {
+                flagged[i].className = "box bad-flag";
+            }
+        }
+        $(".box").addClass("done");
     });
-    $(".box").addClass("done");
+
+    var pre = ParseWinRatePre();
+    var post = ParseWinRatePost();
+    var newWinRate = pre + "/" + (post + 1);
+    var newWinPercentage = ((pre / (post + 1)) * 100).toFixed(2) + "%";
+    
+    setCookie("winRate", newWinRate, 365);
+    setCookie("winPercentage", newWinPercentage, 365);
+    $("#WinRate").html(newWinRate);
+    $("#WinPercentage").html(newWinPercentage);
+}
+
+function ParseWinRatePre() {
+    var winRate = getCookie("winRate");
+    
+    var pre = regex2.exec(winRate);
+    if (pre == null) {
+        pre = regex2.exec(winRate);
+    }
+    
+    return parseInt(pre[0].replace("/", ""));
+}
+
+function ParseWinRatePost() {
+    var winRate = getCookie("winRate");
+
+    var post = regex1.exec(winRate);
+    if (post == null) {
+        post = regex1.exec(winRate);
+    }
+    var postString = post.toString().replace("/", "");
+
+    return parseInt(postString);
 }
 
 function CheckLastRow() {
@@ -56,18 +122,35 @@ function CheckLastRow() {
 function CheckGameComplete() {
     var answered = $(".answered-box").length;
     var answeredInt = parseInt(answered);
-    var flagged = $(".flagged").length;
-    var flaggedInt = parseInt(flagged);
-
-    if (answeredInt + flaggedInt == 480) {
+    
+    if (answeredInt + totalMines == 480){
         CancelTimer();
         gameStatus = false;
         gameActive = false;
+
+        $("#GameResult").show();
+
+        var pre = ParseWinRatePre();
+        var post = ParseWinRatePost();
+        var newWinRate = (pre + 1) + "/" + (post + 1);
+
+        var newWinPercentage;
+
+        if (post == 0) {
+            newWinPercentage = 100 + "%";
+        }
+        else{
+            newWinPercentage = (((pre + 1) / (post + 1)) * 100).toFixed(2) + "%";
+        }
+        setCookie("winRate", newWinRate, 365);
+        setCookie("winPercentage", newWinPercentage, 365);
+        $("#WinRate").html(newWinRate);
+        $("#WinPercentage").html(newWinPercentage);
     }
 }
 
 function CheckMine() {
-    if (!boom) {
+    if (!boom && !$(this).hasClass("flagged")) {
         if (!gameActive)
             StartTimer();
 
@@ -141,12 +224,11 @@ $("#Start").on("click", function () {
         gameStatus = true;
         gameActive = false;
         boom = false;
+        $("#GameResult").hide();
         $("#Start").attr("disabled", "true");
         CancelTimer();
-        remainingMines = 99;
-        $("#Remaining").html("" + remainingMines);
         $("span#Time").html("000");
-        $("#Container").empty();
+        $("#BoxContainer").empty();
         FillContainer();
         $.getJSON("Home/NewGame", function (data) {
             var ci = 0,
@@ -157,6 +239,9 @@ $("#Start").on("click", function () {
                 }
                 ci = 0;
             }
+            totalMines = data;
+            remainingMines = data;
+            $("#Remaining").html(totalMines);
             window.setTimeout(allowNextGame, 4000);
         });
     }
@@ -185,6 +270,8 @@ function FillContainer(){
         var row = document.createElement("div");
         row.id = "Row" + ri;
         row.className = "row";
+        row.style.position = "absolute";
+        row.style.top = (40 * ri) + "px";
         if (rows == ri) {
             row.className += " last-row";
         }
@@ -200,9 +287,84 @@ function FillContainer(){
             box.dataset.row = ri;
             box.dataset.column = ci;
             box.oncontextmenu = function () { rightClick(); };
+            box.style.position = "absolute";
+            box.style.left = (ci * 40) + "px";
             row.appendChild(box);
         }
         ci = 0;
-        $("#Container").append(row);
+        $("#BoxContainer").append(row);
     }
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie(cname, cvalue) {
+    var user = getCookie(cname);
+    if (user != "") {
+        return user;
+    }
+    else {
+        setCookie(cname, cvalue, 365);
+    }
+}
+
+$(document).ready(function () {
+    var cookie1 = checkCookie("winRate", "0/0");
+    var cookie2 = checkCookie("winPercentage", "0%");
+    var cookie3 = checkCookie("bestTime", "0");
+    
+    if (cookie1 == "" || cookie1 == null) {
+        $("#WinRate").html("0/0");
+    }
+    else {
+        $("#WinRate").html(cookie1);
+    }
+    
+    if (cookie2 == "" || cookie2 == null) {
+        $("#WinPercentage").html("0%");
+    }
+    else {
+        $("#WinPercentage").html(cookie2);
+    }
+
+    if (cookie3 == "" || cookie3 == null) {
+        $("#BestTime").html("0");
+    }
+    else {
+        $("#BestTime").html(cookie3);
+    }
+
+    $("#ResetStats").on("click", function () {
+        ResetCookies();
+    });
+
+});
+
+function ResetCookies() {
+    var newWinRate = "0/0";
+    var newWinPercentage = "0%";
+    setCookie("winRate", newWinRate, 365);
+    setCookie("winPercentage", newWinPercentage, 365);
+    $("#WinRate").html(newWinRate);
+    $("#WinPercentage").html(newWinPercentage);
 }
