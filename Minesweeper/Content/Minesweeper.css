@@ -1,6 +1,51 @@
-﻿body{
+﻿body {
+	width: 100wh;
+	height: 90vh;
+	color: #fff;
+	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 60s ease infinite;
+	-moz-animation: Gradient 60s ease infinite;
+	animation: Gradient 60s ease infinite;
     font-family: Arial;
     padding-top: 0px;
+}
+
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
 }
 
 div#HeaderContainer{
@@ -33,10 +78,13 @@ div#TimeDiv{
 
 #Start{
     width: 200px;
-    height: 30px;
+    height: 42px;
     position: relative;
     top: 10px;
     left: -2px;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 2px;
+    font-size: 25px;
 }
 
 div#Container{
@@ -46,6 +94,8 @@ div#Container{
     height: 660px;
     border: outset lightgray 10px;
     position: relative;
+    background-image: url("Spirals.jpg");
+    background-size: 1202px 660px;
 }
 
 div.row {
@@ -68,13 +118,15 @@ div.box:not(.answered-box, .flagged){
 }
 
 div.answered-box{
-    padding-top: 7px;
+    padding-top: 10px;
     vertical-align: middle;
     text-align: center;
-    font-size: 18px;
-    border: none !important;
+    font-size: 14px;
+    border-width: 1px;
+    border-color: white;
+    border-style: dotted;
     font-weight: bold;
-    background-color: lightgray !important;
+    background-color: #efefef !important;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -184,12 +236,13 @@ h2{
     width: 100%;
     position: absolute;
     text-align: center;
-    padding-top: 220px;
-    font-size: 100px;
-    font-family: verdana;
-    text-shadow: 0 0 15px blue;
+    padding-top: 150px;
+    left: -30px;
+    font-size: 200px;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 10px;
+    color: black;
     display: none;
-    color: white;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -197,4 +250,15 @@ h2{
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+#Title{
+    font-size: 200px;
+    font-family: 'Bangers', cursive;
+    text-align: center;
+    position: absolute;
+    text-shadow: 0 0 10px black;
+    top: 170px;
+    left: 130px;
+    user-select: none;
 }
