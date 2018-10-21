@@ -10,17 +10,29 @@ namespace Minesweeper.Controllers
 {
     public class HomeController : Controller
     {
+        MinesweeperDbContext context = new MinesweeperDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            HomeModel model = new HomeModel();
+            model.HighScores = context.HighScores.OrderBy(a => a.Score).Take(10).ToList();
+            return View(model);
         }
 
         public JsonResult NewGame()
         {
+            var highScore = new HighScore()
+            {
+                HighScoreID = Guid.NewGuid(),
+                Name = "Mike",
+                Score = 100,
+                DateRecorded = DateTime.UtcNow
+            };
+
             TempData.Remove("Game");
 
             Random random = new Random();
-            int expertMines = 20;
+            int expertMines = 99;
             int i = 0;
             var allMines = new List<Mine>();
             for (; i < expertMines; i++)
@@ -62,6 +74,36 @@ namespace Minesweeper.Controllers
                 result = GetMineResult(Int32.Parse(column), Int32.Parse(row));
             }   
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult InTopTen(int score)
+        {
+            bool result = false;
+            if (context.HighScores.OrderBy(a => a.Score).Skip(9).Take(1).FirstOrDefault().Score > score)
+                result = true;
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AddNewTopTen(int score, string name)
+        {
+            try
+            {
+                var highScore = new HighScore()
+                {
+                    HighScoreID = Guid.NewGuid(),
+                    Name = name,
+                    Score = score,
+                    DateRecorded = DateTime.UtcNow
+                };
+                context.HighScores.Add(highScore);
+                context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                return Json(ex, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ShowAllMines()

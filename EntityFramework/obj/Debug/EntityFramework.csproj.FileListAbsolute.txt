@@ -1,0 +1,1 @@
+C:\Users\Michael\Source\Repos\Minesweeper\EntityFramework\obj\Debug\EntityFramework.csprojResolveAssemblyReference.cache

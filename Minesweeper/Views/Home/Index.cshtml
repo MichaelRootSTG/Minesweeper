@@ -1,4 +1,6 @@
-﻿<div id="HeaderContainer">
+﻿@model Minesweeper.Models.HomeModel
+
+<div id="HeaderContainer">
     <div id="RemainingDiv">
         <span id="Remaining">000</span>
     </div>
@@ -16,42 +18,28 @@
     <div id="HighScores">
         <h2>High Scores</h2>
         <ul id="LeftSideHighScores" class="highScoreList">
-            <li>
-                1. John 158 
-            </li>
-            <li>
-                2. Amos 167
-            </li>
-            <li>
-                3. Ethan 178
-            </li>
-            <li>
-                4. Meredith 198
-            </li>
-            <li>
-                5. Creed 201
-            </li>
+            @{
+                var i = 0;
+            }
+            @foreach (var item in Model.HighScores.Take(5))
+            {
+                i++;
+                <li>@i. @item.Name - @item.Score</li>
+            }
         </ul>
         <ul id="RightSideHighScores" class="highScoreList">
-            <li>
-                6. Bob 205
-            </li>
-            <li>
-                7. Stanley 221
-            </li>
-            <li>
-                8. Roger 230
-            </li>
-            <li>
-                9. Mark 245
-            </li>
-            <li>
-                10. Michael 321
-            </li>
+            @{
+                i = 5;
+            }
+            @foreach (var item in Model.HighScores.Skip(5).Take(5))
+            {
+                i++;
+                <li>@i. @item.Name - @item.Score</li>
+            }
         </ul>
     </div>
     <div id="YourStats">
-        <h2>Your Stats</h2>
+        <h2>Stats</h2>
         <table id="YourStatsTable">
             <tr>
                 <td>Win Rate</td>
@@ -67,9 +55,15 @@
             </tr>
             <tr>
                 <td colspan="2" id="ResetButtonCell">
-                    <input type="button" value="Reset Stats" id="ResetStats" />
+                    <input type="button" value="Reset" id="ResetStats" />
                 </td>
             </tr>
         </table>
     </div>
+</div>
+<div id="Shield"></div>
+<div id="HighScoreDialog">
+    Congrats!  You made it in the top 10.<br/><br/>
+    Enter your name
+    <input type="text" id="HighScoreName" />
 </div>

@@ -11,6 +11,15 @@
     padding-top: 0px;
 }
 
+#Shield {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    opacity: .7;
+    display: none;
+}
 
 @-webkit-keyframes Gradient {
 	0% {
@@ -209,7 +218,7 @@ h2{
 }
 
 #FooterContainer{
-    width: 1200px;
+    width: 650px;
     margin: 0 auto;
 }
 
@@ -219,7 +228,14 @@ h2{
 }
 
 #ResetStats{
-    margin-top: 10px;
+    font-family: 'Bangers', cursive;
+    width: 200px;
+    height: 42px;
+    position: relative;
+    top: 10px;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 2px;
+    font-size: 25px;
 }
 
 #YourStatsTable{
@@ -259,6 +275,19 @@ h2{
     position: absolute;
     text-shadow: 0 0 10px black;
     top: 170px;
-    left: 130px;
+    width: 100%;
     user-select: none;
 }
+
+.noTitleStuff .ui-dialog-titlebar {
+    display: none;
+}
+
+.ui-dialog {
+    font-size: 14px !important;
+    text-align: center;
+}
+
+.ui-dialog-buttonpane {
+    padding-bottom: 0 !important;
+} 

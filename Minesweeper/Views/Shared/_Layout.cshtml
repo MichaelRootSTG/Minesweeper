@@ -6,8 +6,13 @@
     <title>Minesweeper</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Audiowide|Bangers|Bungee+Inline|Chakra+Petch|Cinzel|Orbitron|Permanent+Marker|Righteous" rel="stylesheet">
     <link href="~/Content/Minesweeper.css" rel="stylesheet" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 </head>
 <body>
     @RenderBody()
@@ -16,4 +21,7 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script src="~/Scripts/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js" integrity="sha256-EgPuQS+2I8bm2u3b3r1dJUEiO56a/xeZGXiTnNTvYZM=" crossorigin="anonymous"></script>
 <script src="~/Scripts/Minesweeper.js"></script>

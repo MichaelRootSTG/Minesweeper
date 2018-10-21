@@ -78,3 +78,7 @@ C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\Newtonsoft.Json.xml
 C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csprojResolveAssemblyReference.cache
 C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.dll
 C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\EntityFramework.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\EntityFramework.SqlServer.dll
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\EntityFramework.xml
+C:\Users\Michael\Source\Repos\Minesweeper\Minesweeper\bin\EntityFramework.SqlServer.xml
